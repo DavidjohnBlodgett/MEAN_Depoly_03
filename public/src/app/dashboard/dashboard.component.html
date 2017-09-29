@@ -1,0 +1,44 @@
+<main>
+    <nav>
+        <a [routerLink]="['/logout']">Logout</a>
+    </nav>
+    <h2>Doctor's Appointments</h2>
+
+    <section id='search'>
+        <form >
+            Search:<input type="text" name="search1" value="" [(ngModel)]='searchStr'>
+        </form>
+    </section>
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Patient Name</th>
+                    <th>Complain</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let i of appointments | search: searchStr'>
+                    <td>{{i.date | date: longDate}}</td>
+                    <td>{{i.time}}</td>
+                    <td>{{i.name}}</td>
+                    <td>
+                        {{i.complain}}
+                        <div class="block" *ngIf='currentUser == i.name' >
+                            <form class="block" (submit)='onDelete(i._id)'>
+                                <button class="button block" type="submit" [name]="i._id">Cancel</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <form (submit)='onCreate()'>
+                <button class="create" type="submit" name="button">Add New Appointment</button>
+            </form>
+        </div>
+    </section>
+</main>

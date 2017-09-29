@@ -1,0 +1,123 @@
+<main>
+    <h1>New Appointment</h1>
+    <section>
+        <form (submit)='onSubmit()' #myAppForm='ngForm'>
+            <table>
+                <tr>
+                    <td>Date:</td>
+                    <td>
+                        <input type="date" name="date" value=""
+                            required
+                            [(ngModel)]='appointmentForm.date'
+                            #date='ngModel'
+                        >
+
+                        <select name="time" id="time"
+                            required
+                            [(ngModel)]='appointmentForm.time'
+                            #time='ngModel'
+                        >
+                            <option value="8:00 AM">8:00 AM</option>
+                            <!-- <option value="8:15 AM">8:15 AM</option>
+                            <option value="8:30 AM">8:30 AM</option>
+                            <option value="8:45 AM">8:45 AM</option> -->
+
+                            <option value="9:00 AM">9:00 AM</option>
+                            <!-- <option value="9:15 AM">9:15 AM</option>
+                            <option value="9:30 AM">9:30 AM</option>
+                            <option value="9:45 AM">9:45 AM</option> -->
+
+                            <option value="10:00 AM">10:00 AM</option>
+                            <!-- <option value="10:15 AM">10:15 AM</option>
+                            <option value="10:30 AM">10:30 AM</option>
+                            <option value="10:45 AM">10:45 AM</option> -->
+
+                            <option value="11:00 AM">11:00 AM</option>
+                            <!-- <option value="11:15 AM">11:15 AM</option>
+                            <option value="11:30 AM">11:30 AM</option>
+                            <option value="11:45 AM">11:45 AM</option> -->
+
+                            <option value="12:00 PM">12:00 PM</option>
+                            <!-- <option value="12:15 PM">12:15 PM</option>
+                            <option value="12:30 PM">12:30 PM</option>
+                            <option value="12:45 PM">12:45 PM</option> -->
+
+                            <option value="1:00 PM">1:00 PM</option>
+                            <!-- <option value="1:15 PM">1:15 PM</option>
+                            <option value="1:30 PM">1:30 PM</option>
+                            <option value="1:45 PM">1:45 PM</option> -->
+
+                            <option value="2:00 PM">2:00 PM</option>
+                            <!-- <option value="2:15 PM">2:15 PM</option>
+                            <option value="2:30 PM">2:30 PM</option>
+                            <option value="2:45 PM">2:45 PM</option> -->
+
+                            <option value="3:00 PM">3:00 PM</option>
+                            <!-- <option value="3:15 PM">3:15 PM</option>
+                            <option value="3:30 PM">3:30 PM</option>
+                            <option value="3:45 PM">3:45 PM</option> -->
+
+                            <option value="4:00 PM">4:00 PM</option>
+                            <!-- <option value="4:15 PM">4:15 PM</option>
+                            <option value="4:30 PM">4:30 PM</option>
+                            <option value="4:45 PM">4:45 PM</option> -->
+
+                            <option value="5:00 PM">5:00 PM</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Complain:</td>
+                    <td>
+                        <textarea name="complain" rows="8" cols="80"
+                            required
+                            minlength="10"
+                            [(ngModel)]='appointmentForm.complain'
+                            #complain='ngModel'
+                        ></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="option">
+                        <div class="option">
+                            <form class="option" (submit)='onCancel()'>
+                                <button class="button option" type="submit" name="cancel">Cancel</button>
+                            </form>
+                            <button class="button option" type="submit" name="sumbit"
+                                [disabled]='myAppForm.invalid'
+                            >Add Appointment</button>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr *ngIf="date.invalid && (date.dirty || date.touched)"
+                         class="alert">
+                         <td></td>
+                    <td *ngIf="date.errors.required">
+                        Date field is required.
+                    </td>
+                </tr>
+
+                <tr *ngIf="time.invalid && (time.dirty || time.touched)"
+                         class="alert">
+                         <td></td>
+                    <td *ngIf="time.errors.required">
+                        Time field is required.
+                    </td>
+                </tr>
+
+                <tr *ngIf="complain.invalid && (complain.dirty || complain.touched)"
+                         class="alert">
+                         <td></td>
+                    <td *ngIf="complain.errors.required">
+                        Complain is required.
+                    </td>
+                    <td *ngIf="complain.errors.minlength">
+                        Complain must be at least 10 characters long.
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </section>
+</main>
